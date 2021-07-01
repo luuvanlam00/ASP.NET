@@ -1,0 +1,892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="banhang2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="binhluan">
+          <Key>
+            <PropertyRef Name="id_bl" />
+          </Key>
+          <Property Name="id_bl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masp" Type="int" />
+          <Property Name="ten" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sdt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="thoigian" Type="date" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ctkm">
+          <Key>
+            <PropertyRef Name="id_ctkm" />
+          </Key>
+          <Property Name="id_ctkm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="id_km" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cthd">
+          <Key>
+            <PropertyRef Name="id_cthd" />
+          </Key>
+          <Property Name="id_cthd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_hd" Type="int" Nullable="false" />
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="giaban" Type="float" />
+          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="id_ctkm" Type="int" />
+        </EntityType>
+        <EntityType Name="cthdnhap">
+          <Key>
+            <PropertyRef Name="id_cthdnhap" />
+          </Key>
+          <Property Name="id_cthdnhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_hdnhap" Type="int" />
+          <Property Name="masp" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="dongia" Type="float" />
+        </EntityType>
+        <EntityType Name="hdn">
+          <Key>
+            <PropertyRef Name="id_hdnhap" />
+          </Key>
+          <Property Name="id_hdnhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mancc" Type="int" />
+          <Property Name="ngaynhap" Type="date" />
+          <Property Name="tennguoigiao" Type="nvarchar" MaxLength="50" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="hoadon">
+          <Key>
+            <PropertyRef Name="id_hd" />
+          </Key>
+          <Property Name="id_hd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="thoigian" Type="date" Nullable="false" />
+          <Property Name="tenkh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="trangthai" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="id_kh" />
+          </Key>
+          <Property Name="id_kh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenkh" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="sdt" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="khuyenmai">
+          <Key>
+            <PropertyRef Name="id_km" />
+          </Key>
+          <Property Name="id_km" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tgbd" Type="date" Nullable="false" />
+          <Property Name="tgkt" Type="date" Nullable="false" />
+          <Property Name="giamgia" Type="float" />
+        </EntityType>
+        <EntityType Name="loaisp">
+          <Key>
+            <PropertyRef Name="maloai" />
+          </Key>
+          <Property Name="maloai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenloai" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="media">
+          <Key>
+            <PropertyRef Name="id_media" />
+          </Key>
+          <Property Name="id_media" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="main" Type="bit" Nullable="false" />
+          <Property Name="masp" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ncc">
+          <Key>
+            <PropertyRef Name="mancc" />
+          </Key>
+          <Property Name="mancc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenncc" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nguoidung">
+          <Key>
+            <PropertyRef Name="taikhoan" />
+          </Key>
+          <Property Name="taikhoan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="matkhau" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="vaitro" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mota" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="chitiet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="giaban" Type="float" />
+          <Property Name="giakm" Type="float" />
+          <Property Name="maloai" Type="int" Nullable="false" />
+          <Property Name="mancc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_binhluan_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="binhluan" Type="Self.binhluan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="binhluan">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkm_khuyenmai">
+          <End Role="khuyenmai" Type="Self.khuyenmai" Multiplicity="1" />
+          <End Role="ctkm" Type="Self.ctkm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khuyenmai">
+              <PropertyRef Name="id_km" />
+            </Principal>
+            <Dependent Role="ctkm">
+              <PropertyRef Name="id_km" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkm_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="ctkm" Type="Self.ctkm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="ctkm">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_ctkm">
+          <End Role="ctkm" Type="Self.ctkm" Multiplicity="0..1" />
+          <End Role="cthd" Type="Self.cthd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctkm">
+              <PropertyRef Name="id_ctkm" />
+            </Principal>
+            <Dependent Role="cthd">
+              <PropertyRef Name="id_ctkm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_hoadon">
+          <End Role="hoadon" Type="Self.hoadon" Multiplicity="1" />
+          <End Role="cthd" Type="Self.cthd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoadon">
+              <PropertyRef Name="id_hd" />
+            </Principal>
+            <Dependent Role="cthd">
+              <PropertyRef Name="id_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="cthd" Type="Self.cthd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="cthd">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthdnhap_hdn">
+          <End Role="hdn" Type="Self.hdn" Multiplicity="0..1" />
+          <End Role="cthdnhap" Type="Self.cthdnhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hdn">
+              <PropertyRef Name="id_hdnhap" />
+            </Principal>
+            <Dependent Role="cthdnhap">
+              <PropertyRef Name="id_hdnhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthdnhap_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="cthdnhap" Type="Self.cthdnhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="cthdnhap">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdn_ncc">
+          <End Role="ncc" Type="Self.ncc" Multiplicity="0..1" />
+          <End Role="hdn" Type="Self.hdn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ncc">
+              <PropertyRef Name="mancc" />
+            </Principal>
+            <Dependent Role="hdn">
+              <PropertyRef Name="mancc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_media_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="media" Type="Self.media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="media">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sanpham_loaisp">
+          <End Role="loaisp" Type="Self.loaisp" Multiplicity="1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loaisp">
+              <PropertyRef Name="maloai" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="maloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sanpham_ncc">
+          <End Role="ncc" Type="Self.ncc" Multiplicity="1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ncc">
+              <PropertyRef Name="mancc" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="mancc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="banhang2ModelStoreContainer">
+          <EntitySet Name="binhluan" EntityType="Self.binhluan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctkm" EntityType="Self.ctkm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cthd" EntityType="Self.cthd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cthdnhap" EntityType="Self.cthdnhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hdn" EntityType="Self.hdn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hoadon" EntityType="Self.hoadon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khuyenmai" EntityType="Self.khuyenmai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loaisp" EntityType="Self.loaisp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="media" EntityType="Self.media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ncc" EntityType="Self.ncc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nguoidung" EntityType="Self.nguoidung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_binhluan_sanpham" Association="Self.FK_binhluan_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="binhluan" EntitySet="binhluan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkm_khuyenmai" Association="Self.FK_ctkm_khuyenmai">
+            <End Role="khuyenmai" EntitySet="khuyenmai" />
+            <End Role="ctkm" EntitySet="ctkm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkm_sanpham" Association="Self.FK_ctkm_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="ctkm" EntitySet="ctkm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_ctkm" Association="Self.FK_cthd_ctkm">
+            <End Role="ctkm" EntitySet="ctkm" />
+            <End Role="cthd" EntitySet="cthd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_hoadon" Association="Self.FK_cthd_hoadon">
+            <End Role="hoadon" EntitySet="hoadon" />
+            <End Role="cthd" EntitySet="cthd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_sanpham" Association="Self.FK_cthd_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="cthd" EntitySet="cthd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthdnhap_hdn" Association="Self.FK_cthdnhap_hdn">
+            <End Role="hdn" EntitySet="hdn" />
+            <End Role="cthdnhap" EntitySet="cthdnhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthdnhap_sanpham" Association="Self.FK_cthdnhap_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="cthdnhap" EntitySet="cthdnhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdn_ncc" Association="Self.FK_hdn_ncc">
+            <End Role="ncc" EntitySet="ncc" />
+            <End Role="hdn" EntitySet="hdn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_media_sanpham" Association="Self.FK_media_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="media" EntitySet="media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sanpham_loaisp" Association="Self.FK_sanpham_loaisp">
+            <End Role="loaisp" EntitySet="loaisp" />
+            <End Role="sanpham" EntitySet="sanpham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sanpham_ncc" Association="Self.FK_sanpham_ncc">
+            <End Role="ncc" EntitySet="ncc" />
+            <End Role="sanpham" EntitySet="sanpham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="banhang2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="binhluan">
+          <Key>
+            <PropertyRef Name="id_bl" />
+          </Key>
+          <Property Name="id_bl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masp" Type="Int32" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sdt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thoigian" Type="DateTime" Precision="0" />
+          <Property Name="noidung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_binhluan_sanpham" FromRole="binhluan" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="ctkm">
+          <Key>
+            <PropertyRef Name="id_ctkm" />
+          </Key>
+          <Property Name="id_ctkm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="id_km" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="khuyenmai" Relationship="Self.FK_ctkm_khuyenmai" FromRole="ctkm" ToRole="khuyenmai" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_ctkm_sanpham" FromRole="ctkm" ToRole="sanpham" />
+          <NavigationProperty Name="cthd" Relationship="Self.FK_cthd_ctkm" FromRole="ctkm" ToRole="cthd" />
+        </EntityType>
+        <EntityType Name="cthd">
+          <Key>
+            <PropertyRef Name="id_cthd" />
+          </Key>
+          <Property Name="id_cthd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_hd" Type="Int32" Nullable="false" />
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="giaban" Type="Double" />
+          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="id_ctkm" Type="Int32" />
+          <NavigationProperty Name="ctkm" Relationship="Self.FK_cthd_ctkm" FromRole="cthd" ToRole="ctkm" />
+          <NavigationProperty Name="hoadon" Relationship="Self.FK_cthd_hoadon" FromRole="cthd" ToRole="hoadon" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_cthd_sanpham" FromRole="cthd" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="cthdnhap">
+          <Key>
+            <PropertyRef Name="id_cthdnhap" />
+          </Key>
+          <Property Name="id_cthdnhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_hdnhap" Type="Int32" />
+          <Property Name="masp" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="dongia" Type="Double" />
+          <NavigationProperty Name="hdn" Relationship="Self.FK_cthdnhap_hdn" FromRole="cthdnhap" ToRole="hdn" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_cthdnhap_sanpham" FromRole="cthdnhap" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="hdn">
+          <Key>
+            <PropertyRef Name="id_hdnhap" />
+          </Key>
+          <Property Name="id_hdnhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mancc" Type="Int32" />
+          <Property Name="ngaynhap" Type="DateTime" Precision="0" />
+          <Property Name="tennguoigiao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noidung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="cthdnhap" Relationship="Self.FK_cthdnhap_hdn" FromRole="hdn" ToRole="cthdnhap" />
+          <NavigationProperty Name="ncc" Relationship="Self.FK_hdn_ncc" FromRole="hdn" ToRole="ncc" />
+        </EntityType>
+        <EntityType Name="hoadon">
+          <Key>
+            <PropertyRef Name="id_hd" />
+          </Key>
+          <Property Name="id_hd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tenkh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trangthai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="cthd" Relationship="Self.FK_cthd_hoadon" FromRole="hoadon" ToRole="cthd" />
+        </EntityType>
+        <EntityType Name="khachhang">
+          <Key>
+            <PropertyRef Name="id_kh" />
+          </Key>
+          <Property Name="id_kh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenkh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sdt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="khuyenmai">
+          <Key>
+            <PropertyRef Name="id_km" />
+          </Key>
+          <Property Name="id_km" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgbd" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tgkt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="giamgia" Type="Double" />
+          <NavigationProperty Name="ctkm" Relationship="Self.FK_ctkm_khuyenmai" FromRole="khuyenmai" ToRole="ctkm" />
+        </EntityType>
+        <EntityType Name="loaisp">
+          <Key>
+            <PropertyRef Name="maloai" />
+          </Key>
+          <Property Name="maloai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_sanpham_loaisp" FromRole="loaisp" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="media">
+          <Key>
+            <PropertyRef Name="id_media" />
+          </Key>
+          <Property Name="id_media" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="main" Type="Boolean" Nullable="false" />
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_media_sanpham" FromRole="media" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="ncc">
+          <Key>
+            <PropertyRef Name="mancc" />
+          </Key>
+          <Property Name="mancc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenncc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="hdn" Relationship="Self.FK_hdn_ncc" FromRole="ncc" ToRole="hdn" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK_sanpham_ncc" FromRole="ncc" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="nguoidung">
+          <Key>
+            <PropertyRef Name="taikhoan" />
+          </Key>
+          <Property Name="taikhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="matkhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="vaitro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tensp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mota" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="chitiet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="giaban" Type="Double" />
+          <Property Name="giakm" Type="Double" />
+          <Property Name="maloai" Type="Int32" Nullable="false" />
+          <Property Name="mancc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="binhluan" Relationship="Self.FK_binhluan_sanpham" FromRole="sanpham" ToRole="binhluan" />
+          <NavigationProperty Name="ctkm" Relationship="Self.FK_ctkm_sanpham" FromRole="sanpham" ToRole="ctkm" />
+          <NavigationProperty Name="cthd" Relationship="Self.FK_cthd_sanpham" FromRole="sanpham" ToRole="cthd" />
+          <NavigationProperty Name="cthdnhap" Relationship="Self.FK_cthdnhap_sanpham" FromRole="sanpham" ToRole="cthdnhap" />
+          <NavigationProperty Name="loaisp" Relationship="Self.FK_sanpham_loaisp" FromRole="sanpham" ToRole="loaisp" />
+          <NavigationProperty Name="media" Relationship="Self.FK_media_sanpham" FromRole="sanpham" ToRole="media" />
+          <NavigationProperty Name="ncc" Relationship="Self.FK_sanpham_ncc" FromRole="sanpham" ToRole="ncc" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_binhluan_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="binhluan" Type="Self.binhluan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="binhluan">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkm_khuyenmai">
+          <End Role="khuyenmai" Type="Self.khuyenmai" Multiplicity="1" />
+          <End Role="ctkm" Type="Self.ctkm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khuyenmai">
+              <PropertyRef Name="id_km" />
+            </Principal>
+            <Dependent Role="ctkm">
+              <PropertyRef Name="id_km" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkm_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="ctkm" Type="Self.ctkm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="ctkm">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_ctkm">
+          <End Role="ctkm" Type="Self.ctkm" Multiplicity="0..1" />
+          <End Role="cthd" Type="Self.cthd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctkm">
+              <PropertyRef Name="id_ctkm" />
+            </Principal>
+            <Dependent Role="cthd">
+              <PropertyRef Name="id_ctkm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_hoadon">
+          <End Role="hoadon" Type="Self.hoadon" Multiplicity="1" />
+          <End Role="cthd" Type="Self.cthd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hoadon">
+              <PropertyRef Name="id_hd" />
+            </Principal>
+            <Dependent Role="cthd">
+              <PropertyRef Name="id_hd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="cthd" Type="Self.cthd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="cthd">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthdnhap_hdn">
+          <End Role="hdn" Type="Self.hdn" Multiplicity="0..1" />
+          <End Role="cthdnhap" Type="Self.cthdnhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hdn">
+              <PropertyRef Name="id_hdnhap" />
+            </Principal>
+            <Dependent Role="cthdnhap">
+              <PropertyRef Name="id_hdnhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthdnhap_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="cthdnhap" Type="Self.cthdnhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="cthdnhap">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hdn_ncc">
+          <End Role="ncc" Type="Self.ncc" Multiplicity="0..1" />
+          <End Role="hdn" Type="Self.hdn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ncc">
+              <PropertyRef Name="mancc" />
+            </Principal>
+            <Dependent Role="hdn">
+              <PropertyRef Name="mancc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sanpham_loaisp">
+          <End Role="loaisp" Type="Self.loaisp" Multiplicity="1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loaisp">
+              <PropertyRef Name="maloai" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="maloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_media_sanpham">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+          <End Role="media" Type="Self.media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="media">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sanpham_ncc">
+          <End Role="ncc" Type="Self.ncc" Multiplicity="1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ncc">
+              <PropertyRef Name="mancc" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="mancc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="banhang2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="binhluan" EntityType="Self.binhluan" />
+          <EntitySet Name="ctkm" EntityType="Self.ctkm" />
+          <EntitySet Name="cthd" EntityType="Self.cthd" />
+          <EntitySet Name="cthdnhap" EntityType="Self.cthdnhap" />
+          <EntitySet Name="hdn" EntityType="Self.hdn" />
+          <EntitySet Name="hoadon" EntityType="Self.hoadon" />
+          <EntitySet Name="khachhang" EntityType="Self.khachhang" />
+          <EntitySet Name="khuyenmai" EntityType="Self.khuyenmai" />
+          <EntitySet Name="loaisp" EntityType="Self.loaisp" />
+          <EntitySet Name="media" EntityType="Self.media" />
+          <EntitySet Name="ncc" EntityType="Self.ncc" />
+          <EntitySet Name="nguoidung" EntityType="Self.nguoidung" />
+          <EntitySet Name="sanpham" EntityType="Self.sanpham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_binhluan_sanpham" Association="Self.FK_binhluan_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="binhluan" EntitySet="binhluan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkm_khuyenmai" Association="Self.FK_ctkm_khuyenmai">
+            <End Role="khuyenmai" EntitySet="khuyenmai" />
+            <End Role="ctkm" EntitySet="ctkm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkm_sanpham" Association="Self.FK_ctkm_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="ctkm" EntitySet="ctkm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_ctkm" Association="Self.FK_cthd_ctkm">
+            <End Role="ctkm" EntitySet="ctkm" />
+            <End Role="cthd" EntitySet="cthd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_hoadon" Association="Self.FK_cthd_hoadon">
+            <End Role="hoadon" EntitySet="hoadon" />
+            <End Role="cthd" EntitySet="cthd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_sanpham" Association="Self.FK_cthd_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="cthd" EntitySet="cthd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthdnhap_hdn" Association="Self.FK_cthdnhap_hdn">
+            <End Role="hdn" EntitySet="hdn" />
+            <End Role="cthdnhap" EntitySet="cthdnhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthdnhap_sanpham" Association="Self.FK_cthdnhap_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="cthdnhap" EntitySet="cthdnhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hdn_ncc" Association="Self.FK_hdn_ncc">
+            <End Role="ncc" EntitySet="ncc" />
+            <End Role="hdn" EntitySet="hdn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sanpham_loaisp" Association="Self.FK_sanpham_loaisp">
+            <End Role="loaisp" EntitySet="loaisp" />
+            <End Role="sanpham" EntitySet="sanpham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_media_sanpham" Association="Self.FK_media_sanpham">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="media" EntitySet="media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sanpham_ncc" Association="Self.FK_sanpham_ncc">
+            <End Role="ncc" EntitySet="ncc" />
+            <End Role="sanpham" EntitySet="sanpham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="banhang2ModelStoreContainer" CdmEntityContainer="banhang2Entities">
+          <EntitySetMapping Name="binhluan">
+            <EntityTypeMapping TypeName="banhang2Model.binhluan">
+              <MappingFragment StoreEntitySet="binhluan">
+                <ScalarProperty Name="id_bl" ColumnName="id_bl" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="thoigian" ColumnName="thoigian" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctkm">
+            <EntityTypeMapping TypeName="banhang2Model.ctkm">
+              <MappingFragment StoreEntitySet="ctkm">
+                <ScalarProperty Name="id_ctkm" ColumnName="id_ctkm" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="id_km" ColumnName="id_km" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cthd">
+            <EntityTypeMapping TypeName="banhang2Model.cthd">
+              <MappingFragment StoreEntitySet="cthd">
+                <ScalarProperty Name="id_cthd" ColumnName="id_cthd" />
+                <ScalarProperty Name="id_hd" ColumnName="id_hd" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="giaban" ColumnName="giaban" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="id_ctkm" ColumnName="id_ctkm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cthdnhap">
+            <EntityTypeMapping TypeName="banhang2Model.cthdnhap">
+              <MappingFragment StoreEntitySet="cthdnhap">
+                <ScalarProperty Name="id_cthdnhap" ColumnName="id_cthdnhap" />
+                <ScalarProperty Name="id_hdnhap" ColumnName="id_hdnhap" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="dongia" ColumnName="dongia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hdn">
+            <EntityTypeMapping TypeName="banhang2Model.hdn">
+              <MappingFragment StoreEntitySet="hdn">
+                <ScalarProperty Name="id_hdnhap" ColumnName="id_hdnhap" />
+                <ScalarProperty Name="mancc" ColumnName="mancc" />
+                <ScalarProperty Name="ngaynhap" ColumnName="ngaynhap" />
+                <ScalarProperty Name="tennguoigiao" ColumnName="tennguoigiao" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hoadon">
+            <EntityTypeMapping TypeName="banhang2Model.hoadon">
+              <MappingFragment StoreEntitySet="hoadon">
+                <ScalarProperty Name="id_hd" ColumnName="id_hd" />
+                <ScalarProperty Name="thoigian" ColumnName="thoigian" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khachhang">
+            <EntityTypeMapping TypeName="banhang2Model.khachhang">
+              <MappingFragment StoreEntitySet="khachhang">
+                <ScalarProperty Name="id_kh" ColumnName="id_kh" />
+                <ScalarProperty Name="tenkh" ColumnName="tenkh" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khuyenmai">
+            <EntityTypeMapping TypeName="banhang2Model.khuyenmai">
+              <MappingFragment StoreEntitySet="khuyenmai">
+                <ScalarProperty Name="id_km" ColumnName="id_km" />
+                <ScalarProperty Name="tgbd" ColumnName="tgbd" />
+                <ScalarProperty Name="tgkt" ColumnName="tgkt" />
+                <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loaisp">
+            <EntityTypeMapping TypeName="banhang2Model.loaisp">
+              <MappingFragment StoreEntitySet="loaisp">
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="tenloai" ColumnName="tenloai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="media">
+            <EntityTypeMapping TypeName="banhang2Model.media">
+              <MappingFragment StoreEntitySet="media">
+                <ScalarProperty Name="id_media" ColumnName="id_media" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="main" ColumnName="main" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ncc">
+            <EntityTypeMapping TypeName="banhang2Model.ncc">
+              <MappingFragment StoreEntitySet="ncc">
+                <ScalarProperty Name="mancc" ColumnName="mancc" />
+                <ScalarProperty Name="tenncc" ColumnName="tenncc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nguoidung">
+            <EntityTypeMapping TypeName="banhang2Model.nguoidung">
+              <MappingFragment StoreEntitySet="nguoidung">
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+                <ScalarProperty Name="vaitro" ColumnName="vaitro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanpham">
+            <EntityTypeMapping TypeName="banhang2Model.sanpham">
+              <MappingFragment StoreEntitySet="sanpham">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="chitiet" ColumnName="chitiet" />
+                <ScalarProperty Name="giaban" ColumnName="giaban" />
+                <ScalarProperty Name="giakm" ColumnName="giakm" />
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="mancc" ColumnName="mancc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="banhang2Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
